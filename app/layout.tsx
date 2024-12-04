@@ -9,8 +9,8 @@ import './globals.css'
 const font = DM_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Buildify by unimanage',
-  description: 'All in one Agency Solution',
+  title: 'Buildify by Unimanage',
+  description: 'All in one Agency Solution by Unimanage',
 }
 
 export default function RootLayout({

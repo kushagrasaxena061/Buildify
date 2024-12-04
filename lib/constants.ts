@@ -41,25 +41,25 @@ export const pricingCards = [
   {
     title: "Unlimited Saas",
     description: "The ultimate agency kit",
-    price: "$199",
+    price: "₹199",
     duration: "month",
     highlight: "Key features",
     features: ["Rebilling", "24/7 Support team"],
-    priceId: "price_1Pvy5nSC0XBxj9GIRbnArpju",
+    priceId: "price_1QSL7fEIb0YBK29QTk355MfK",
   },
   {
     title: "Basic",
     description: "For serious agency owners",
-    price: "$49",
+    price: "₹49",
     duration: "month",
     highlight: "Everything in Starter, plus",
     features: ["Unlimited Sub accounts", "Unlimited Team members"],
-    priceId: "price_1Pvy5oSC0XBxj9GIMwTs1pWs",
+    priceId: "price_1QSL7fEIb0YBK29QzccKDOEO",
   },
 ];
 
 export const addOnProducts = [
-  { title: "Priority Support", id: "prod_QnZzaEU0dEwlPE" }, // Priority Support ID
+  { title: "Priority Support", id: "prod_RL1ADX5g7n7yy5" }, // Priority Support ID
 ];
 
 export const icons = [

@@ -396,8 +396,8 @@ model Notification {
 }
 
 enum Plan {
-  price_1Pvy5oSC0XBxj9GIMwTs1pWs // Basic
-  price_1Pvy5nSC0XBxj9GIRbnArpju // Unlimited Saas
+  price_1QSL7fEIb0YBK29QzccKDOEO // Basic
+  price_1QSL7fEIb0YBK29QTk355MfK // Unlimited Saas
 }
 
 model Subscription {

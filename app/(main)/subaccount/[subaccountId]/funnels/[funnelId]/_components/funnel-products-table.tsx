@@ -118,7 +118,7 @@ const FunnelProductsTable: React.FC<FunnelProductsTableProps> = ({
                 }
               </TableCell>
               <TableCell className="text-right">
-                $
+              ₹
                 {
                   //@ts-ignore
                   product.default_price?.unit_amount / 100
