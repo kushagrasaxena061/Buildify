@@ -27,7 +27,7 @@ const Page = async ({
   params: { agencyId: string }
   searchParams: { code: string }
 }) => {
-  let currency = 'USD'
+  let currency = 'INR'
   let sessions
   let totalClosedSessions
   let totalPendingSessions
@@ -57,7 +57,7 @@ const Page = async ({
       stripeAccount: agencyDetails.connectAccountId,
     })
 
-    currency = response.default_currency?.toUpperCase() || 'USD'
+    currency = response.default_currency?.toUpperCase() || 'IRR'
     const checkoutSessions = await stripe.checkout.sessions.list(
       {
         created: { gte: startDate, lte: endDate },

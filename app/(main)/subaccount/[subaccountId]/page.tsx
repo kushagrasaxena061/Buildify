@@ -34,7 +34,7 @@ type Props = {
 }
 
 const SubaccountPageId = async ({ params, searchParams }: Props) => {
-  let currency = 'USD'
+  let currency = 'INR'
   let sessions
   let totalClosedSessions
   let totalPendingSessions
@@ -58,7 +58,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
     const response = await stripe.accounts.retrieve({
       stripeAccount: subaccountDetails.connectAccountId,
     })
-    currency = response.default_currency?.toUpperCase() || 'USD'
+    currency = response.default_currency?.toUpperCase() || 'INR'
     const checkoutSessions = await stripe.checkout.sessions.list(
       { created: { gte: startDate, lte: endDate }, limit: 100 },
       {
