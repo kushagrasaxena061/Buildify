@@ -148,7 +148,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
               <CardHeader>
                 <CardDescription>Income</CardDescription>
                 <CardTitle className="text-4xl">
-                  {net ? `${currency} ${net.toFixed(2)}` : `₹0.00`}
+                  {net ? `₹ ${net.toFixed(2)}` : `₹0.00`}
                 </CardTitle>
                 <small className="text-xs text-muted-foreground">
                   For the year {currentYear}
@@ -164,7 +164,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
                 <CardDescription>Potential Income</CardDescription>
                 <CardTitle className="text-4xl">
                   {potentialIncome
-                    ? `${currency} ${potentialIncome.toFixed(2)}`
+                    ? `₹ ${potentialIncome.toFixed(2)}`
                     : `₹0.00`}
                 </CardTitle>
                 <small className="text-xs text-muted-foreground">
