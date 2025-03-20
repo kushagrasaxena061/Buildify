@@ -2,6 +2,7 @@ import { ModeToggle } from '@/components/website/mode-toggle'
 import { UserButton } from '@clerk/nextjs'
 import { User } from '@clerk/nextjs/server'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type Props = {
   user?: null | User
@@ -12,7 +13,8 @@ const Navigation = ({ user }: Props) => {
     <div className="fixed  top-0 right-0 left-0 p-4 flex items-center justify-between z-10">
       <aside className="flex items-center gap-2">
        
-        <span className="text-xl font-bold"> Buildify</span>
+        {/* <span className="text-xl font-bold"> Buildify</span> */}
+        <Image src={"/Buildify.png"} alt="logo main" width={80} height={80}/>
       </aside>
       <nav className="hidden md:block absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]">
         <ul className="flex font-bold items-center justify-center gap-8">
