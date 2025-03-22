@@ -5,36 +5,32 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { pricingCards } from '@/lib/constants'
-import { stripe } from '@/lib/stripe'
-import clsx from 'clsx'
-import { Check } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+} from "@/components/ui/card";
+import { pricingCards } from "@/lib/constants";
+import { stripe } from "@/lib/stripe";
+import clsx from "clsx";
+import { Check } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
   const prices = await stripe.prices.list({
     product: process.env.NEXT_PLURA_PRODUCT_ID,
     active: true,
-  })
+  });
 
   return (
     <>
       <section className="h-full w-full md:pt-44 mt-[-70px] relative flex items-center justify-center flex-col ">
-        {/* grid */}
-
         <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#161616_1px,transparent_1px),linear-gradient(to_bottom,#161616_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] -z-10" />
 
         <p className="text-center">Run your agency, in one place</p>
         <div className="bg-[#A64D79] text-black p-32  bg-clip-text relative">
-          <h1 className="text-9xl text-[#AA5486]  font-bold text-center md:text-[300px]">
-           
-          </h1>
+          <h1 className="text-9xl text-[#AA5486]  font-bold text-center md:text-[300px]"></h1>
         </div>
         <div className="flex justify-center items-center relative md:mt-[-70px]">
           <Image
-            src={'/assets/preview.png'}
+            src={"/assets/preview.png"}
             alt="banner image"
             height={1200}
             width={1200}
@@ -55,14 +51,14 @@ export default async function Home() {
             //WIP: Wire up free product from stripe
             <Card
               key={card.nickname}
-              className={clsx('w-[300px] flex flex-col justify-between', {
-                'border-2 border-[#A64D79]': card.nickname === 'Unlimited Saas',
+              className={clsx("w-[300px] flex flex-col justify-between", {
+                "border-2 border-[#A64D79]": card.nickname === "Unlimited Saas",
               })}
             >
               <CardHeader>
                 <CardTitle
-                  className={clsx('', {
-                    'text-muted-foreground': card.nickname !== 'Unlimited Saas',
+                  className={clsx("", {
+                    "text-muted-foreground": card.nickname !== "Unlimited Saas",
                   })}
                 >
                   {card.nickname}
@@ -87,10 +83,7 @@ export default async function Home() {
                   {pricingCards
                     .find((c) => c.title === card.nickname)
                     ?.features.map((feature) => (
-                      <div
-                        key={feature}
-                        className="flex gap-2"
-                      >
+                      <div key={feature} className="flex gap-2">
                         <Check />
                         <p>{feature}</p>
                       </div>
@@ -99,10 +92,10 @@ export default async function Home() {
                 <Link
                   href={`/agency?plan=${card.id}`}
                   className={clsx(
-                    ' text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium w-full text-center  p-2 rounded-md',
+                    " text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium w-full text-center  p-2 rounded-md",
                     {
-                      '!bg-muted-foreground':
-                        card.nickname !== 'Unlimited Saas',
+                      "!bg-muted-foreground":
+                        card.nickname !== "Unlimited Saas",
                     }
                   )}
                 >
@@ -111,11 +104,11 @@ export default async function Home() {
               </CardFooter>
             </Card>
           ))}
-          <Card className={clsx('w-[300px] flex flex-col justify-between')}>
+          <Card className={clsx("w-[300px] flex flex-col justify-between")}>
             <CardHeader>
               <CardTitle
                 className={clsx({
-                  'text-muted-foreground': true,
+                  "text-muted-foreground": true,
                 })}
               >
                 {pricingCards[0].title}
@@ -129,12 +122,9 @@ export default async function Home() {
             <CardFooter className="flex flex-col  items-start gap-4 ">
               <div>
                 {pricingCards
-                  .find((c) => c.title === 'Starter')
+                  .find((c) => c.title === "Starter")
                   ?.features.map((feature) => (
-                    <div
-                      key={feature}
-                      className="flex gap-2"
-                    >
+                    <div key={feature} className="flex gap-2">
                       <Check />
                       <p>{feature}</p>
                     </div>
@@ -143,9 +133,9 @@ export default async function Home() {
               <Link
                 href="/agency"
                 className={clsx(
-                  'w-full text-center bg-[#A64D79] p-2 rounded-md',
+                  "w-full text-center bg-[#A64D79] p-2 rounded-md",
                   {
-                    '!bg-muted-foreground': true,
+                    "!bg-muted-foreground": true,
                   }
                 )}
               >
@@ -156,5 +146,5 @@ export default async function Home() {
         </div>
       </section>
     </>
-  )
+  );
 }

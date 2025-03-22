@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   AlertDialog,
@@ -10,8 +10,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Badge } from '@/components/ui/badge'
+} from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,29 +19,29 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { deleteLane, saveActivityLogsNotification } from '@/lib/queries'
-import { LaneDetail, TicketWithTags } from '@/lib/types'
-import { cn } from '@/lib/utils'
-import { useModal } from '@/providers/modal-provider'
-import { Draggable, Droppable } from 'react-beautiful-dnd'
-import { Edit, MoreVertical, PlusCircleIcon, Trash } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import React, { Dispatch, SetStateAction, useMemo } from 'react'
+} from "@/components/ui/dropdown-menu";
+import { deleteLane, saveActivityLogsNotification } from "@/lib/queries";
+import { LaneDetail, TicketWithTags } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import { useModal } from "@/providers/modal-provider";
+import { Draggable, Droppable } from "react-beautiful-dnd";
+import { Edit, MoreVertical, PlusCircleIcon, Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { Dispatch, SetStateAction, useMemo } from "react";
 // import PipelineTicket from './pipeline-ticket'
-import PipelineTicket from './pipeline-ticket'
-import CustomModal from '@/components/website/custom-modal'
-import LaneForm from '@/components/website/lane-form'
-import TicketForm from '@/components/website/ticket-form'
+import PipelineTicket from "./pipeline-ticket";
+import CustomModal from "@/components/website/custom-modal";
+import LaneForm from "@/components/website/lane-form";
+import TicketForm from "@/components/website/ticket-form";
 
 interface PipelaneLaneProps {
-  setAllTickets: Dispatch<SetStateAction<TicketWithTags>>
-  allTickets: TicketWithTags
-  tickets: TicketWithTags
-  pipelineId: string
-  laneDetails: LaneDetail
-  subaccountId: string
-  index: number
+  setAllTickets: Dispatch<SetStateAction<TicketWithTags>>;
+  allTickets: TicketWithTags;
+  tickets: TicketWithTags;
+  pipelineId: string;
+  laneDetails: LaneDetail;
+  subaccountId: string;
+  index: number;
 }
 
 const PipelineLane: React.FC<PipelaneLaneProps> = ({
@@ -53,27 +53,27 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
   allTickets,
   index,
 }) => {
-  const { setOpen } = useModal()
-  const router = useRouter()
+  const { setOpen } = useModal();
+  const router = useRouter();
 
   const amt = new Intl.NumberFormat(undefined, {
-    style: 'currency',
-    currency: 'INR',
-  })
+    style: "currency",
+    currency: "INR",
+  });
 
   const laneAmt = useMemo(() => {
-    console.log(tickets)
+    console.log(tickets);
     return tickets.reduce(
       (sum, ticket) => sum + (Number(ticket?.value) || 0),
       0
-    )
-  }, [tickets])
+    );
+  }, [tickets]);
 
-  const randomColor = `#${Math.random().toString(16).slice(2, 8)}`
+  const randomColor = `#${Math.random().toString(16).slice(2, 8)}`;
 
   const addNewTicket = (ticket: TicketWithTags[0]) => {
-    setAllTickets([...allTickets, ticket])
-  }
+    setAllTickets([...allTickets, ticket]);
+  };
 
   const handleCreateTicket = () => {
     setOpen(
@@ -87,36 +87,30 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
           subaccountId={subaccountId}
         />
       </CustomModal>
-    )
-  }
+    );
+  };
 
   const handleEditLane = () => {
     setOpen(
-      <CustomModal
-        title="Edit Lane Details"
-        subheading=""
-      >
-        <LaneForm
-          pipelineId={pipelineId}
-          defaultData={laneDetails}
-        />
+      <CustomModal title="Edit Lane Details" subheading="">
+        <LaneForm pipelineId={pipelineId} defaultData={laneDetails} />
       </CustomModal>
-    )
-  }
+    );
+  };
 
   const handleDeleteLane = async () => {
     try {
-      const response = await deleteLane(laneDetails.id)
+      const response = await deleteLane(laneDetails.id);
       await saveActivityLogsNotification({
         agencyId: undefined,
         description: `Deleted a lane | ${response?.name}`,
         subaccountId,
-      })
-      router.refresh()
+      });
+      router.refresh();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Draggable
@@ -127,17 +121,17 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
       {(provided, snapshot) => {
         if (snapshot.isDragging) {
           //@ts-ignore
-          const offset = { x: 300, y: 0 }
+          const offset = { x: 300, y: 0 };
           //@ts-ignore
-          const x = provided.draggableProps.style?.left - offset.x
+          const x = provided.draggableProps.style?.left - offset.x;
           //@ts-ignore
-          const y = provided.draggableProps.style?.top - offset.y
+          const y = provided.draggableProps.style?.top - offset.y;
           //@ts-ignore
           provided.draggableProps.style = {
             ...provided.draggableProps.style,
             top: y,
             left: x,
-          }
+          };
         }
         return (
           <div
@@ -153,10 +147,9 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
                     className=" h-14 backdrop-blur-lg dark:bg-background/40 bg-slate-200/60  absolute top-0 left-0 right-0 z-10 "
                   >
                     <div className="h-full flex items-center p-4 justify-between cursor-grab border-b-[1px] ">
-                      {/* {laneDetails.order} */}
                       <div className="flex items-center w-full gap-2">
                         <div
-                          className={cn('w-4 h-4 rounded-full')}
+                          className={cn("w-4 h-4 rounded-full")}
                           style={{ background: randomColor }}
                         />
                         <span className="font-bold text-sm">
@@ -251,10 +244,10 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
               </DropdownMenu>
             </AlertDialog>
           </div>
-        )
+        );
       }}
     </Draggable>
-  )
-}
+  );
+};
 
-export default PipelineLane
+export default PipelineLane;
